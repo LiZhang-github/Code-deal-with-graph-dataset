@@ -25,17 +25,17 @@ with open("blogCatalog3-groups.txt","r") as fin:
         label.append(line[1].split())
     one_hot = MultiLabelBinarizer()
     new_label=one_hot.fit_transform(label)
-    pickle.dump (new_label[0:60],open("ind.blog.y","wb"))
+    pickle.dump (new_label[0:1000],open("ind.blog.y","wb"))
     pickle.dump (new_label[9312:10312],open("ind.blog.ty","wb"))
-    pickle.dump (new_label,open("ind.blog.ally","wb"))
+    pickle.dump (new_label[0:9312],open("ind.blog.ally","wb"))
 
 "********** produce the features **********"
 a = []
 a0 = scio.loadmat('blogcatalog.mat') 
 a1 = a0['network']
-pickle.dump (a1[0:60],open("ind.blog.x","wb"))
+pickle.dump (a1[0:1000],open("ind.blog.x","wb"))
 pickle.dump (a1[9312:10312],open("ind.blog.tx","wb"))
-pickle.dump (a1,open("ind.blog.allx","wb"))
+pickle.dump (a1[0:9312],open("ind.blog.allx","wb"))
 
 "********** produce the graph **********"
 a2 = a1.tolil(copy=False)
