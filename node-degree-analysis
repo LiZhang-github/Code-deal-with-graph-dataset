@@ -1,0 +1,14 @@
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+nd = np.loadtxt("citeseer_node_degree.txt")
+nd_max = max(nd)
+nd_min = min(nd)
+nd_avg = np.mean (nd)
+print("the most node_degree is ",nd_max)
+print("the smallest node_degree is ",nd_min)
+print("the average node_degree is ",nd_avg)
+
+plt.plot(nd)
+plt.show()
