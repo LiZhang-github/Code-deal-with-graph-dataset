@@ -1,0 +1,19 @@
+
+""" -----np.where----- 
+import numpy as np
+data = np.arange(9).reshape(3,3)
+
+data1= np.where(data>3,1,np.where(data<2,-1,0))
+adr = np.where(data>3)
+data2 = data[adr]
+data3 = np.where(data>3,1,data)
+"""
+
+import numpy as np
+from scipy.sparse import csr_matrix
+
+data = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+row = np.array([0,0,0,0,0,1,1,1,2,2,2,2,3,3,4,4,4,4,5,5])
+col = np.array([0,1,2,3,5,0,1,4,0,1,2,4,2,3,1,2,3,4,2,5])
+a = csr_matrix((data,(row,col)),shape=(6,6))
+aa = a.toarray()
