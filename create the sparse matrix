@@ -1,4 +1,3 @@
-
 """ -----np.where----- 
 import numpy as np
 data = np.arange(9).reshape(3,3)
@@ -8,12 +7,24 @@ adr = np.where(data>3)
 data2 = data[adr]
 data3 = np.where(data>3,1,data)
 """
-
+## example for find fixed one from vector
 import numpy as np
 from scipy.sparse import csr_matrix
 
 data = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 row = np.array([0,0,0,0,0,1,1,1,2,2,2,2,3,3,4,4,4,4,5,5])
 col = np.array([0,1,2,3,5,0,1,4,0,1,2,4,2,3,1,2,3,4,2,5])
-a = csr_matrix((data,(row,col)),shape=(6,6))
+a = csr_matrix((data,(row,col)),shape=(6,6)).tolil()
 aa = a.toarray()
+#aaa = a.tolil()
+#------find the address
+rowsum = np.array(aa.sum(1))
+aa_d = np.where(rowsum>3)
+aa1 = aa[aa_d]
+aa = np.zeros(aa1.shape)
+
+#pdb.set_trace()
+for i in range(aa1.shape[0]):
+    aa1_adr = np.where(aa1[i] == 1)
+    adj1_adr1 = np.random.choice(aa1_adr[0], 3, replace = False)
+    aa[i][adj1_adr1] = 1
